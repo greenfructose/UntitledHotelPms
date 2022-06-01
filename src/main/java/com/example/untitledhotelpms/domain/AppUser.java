@@ -5,17 +5,16 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Set;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@MappedSuperclass
 @Entity
+@Table(name = "app_users")
 public class AppUser extends BaseEntity {
 
     @Column(name = "first_name")
@@ -26,6 +25,9 @@ public class AppUser extends BaseEntity {
     private String email;
     @Column(name = "phone")
     private String phone;
+    @OneToMany
+    @JoinColumn(name = "user_roles_id")
+    private Set<UserRole> userRoles;
     @Column(name = "created_at")
     private LocalDateTime createdAt;
 
