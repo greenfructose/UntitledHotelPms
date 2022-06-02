@@ -6,18 +6,27 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.Table;
+import java.util.Date;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "states")
-public class State extends BaseEntity{
+public class State extends BaseEntity {
 
     private String name;
+    private Country country;
 
-    public State(Long id, String name) {
-        super(id);
+    public State(Long id,
+                 Date createdDate,
+                 String createdBy,
+                 Date lastModifiedDate,
+                 String lastModifiedBy,
+                 boolean deleted,
+                 String name,
+                 Country country) {
+        super(id, createdDate, createdBy, lastModifiedDate, lastModifiedBy, deleted);
         this.name = name;
+        this.country = country;
     }
 }

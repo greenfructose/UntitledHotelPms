@@ -1,16 +1,13 @@
 package com.example.untitledhotelpms.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.Column;
 import javax.persistence.Table;
+import java.util.Date;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "addresses")
 public class Address extends BaseEntity {
@@ -24,10 +21,21 @@ public class Address extends BaseEntity {
     @Column(name = "state")
     private State state;
 
-    public Address(Long id, String street1, String street2, String postalCode) {
-        super(id);
+    @Builder
+    public Address(Long id,
+                   Date createdDate,
+                   String createdBy,
+                   Date lastModifiedDate,
+                   String lastModifiedBy,
+                   boolean deleted,
+                   String street1,
+                   String street2,
+                   String postalCode,
+                   State state) {
+        super(id, createdDate, createdBy, lastModifiedDate, lastModifiedBy, deleted);
         this.street1 = street1;
         this.street2 = street2;
         this.postalCode = postalCode;
+        this.state = state;
     }
 }

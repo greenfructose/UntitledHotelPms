@@ -1,20 +1,20 @@
 package com.example.untitledhotelpms.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.Set;
 
 @Getter
 @Setter
-@AllArgsConstructor
-@NoArgsConstructor
 @Entity
+@NoArgsConstructor
 @Table(name = "app_users")
+@Where(clause = "deleted='false'")
+@SQLDelete(sql = "UPDATE app_users SET deleted = true WHERE id = ?")
 public class AppUser extends BaseEntity {
 
     @Column(name = "first_name")
@@ -28,20 +28,27 @@ public class AppUser extends BaseEntity {
     @OneToMany
     @JoinColumn(name = "user_roles_id")
     private Set<UserRole> userRoles;
-    @Column(name = "created_at")
-    private LocalDateTime createdAt;
 
+
+    @Builder
     public AppUser(Long id,
+                   Date createdDate,
+                   String createdBy,
+                   Date lastModifiedDate,
+                   String lastModifiedBy,
+                   boolean deleted,
                    String firstName,
                    String lastName,
                    String email,
                    String phone,
-                   LocalDateTime createdAt) {
-        super(id);
+                   Set<UserRole> userRoles) {
+        super(id, createdDate, createdBy, lastModifiedDate, lastModifiedBy, deleted);
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.phone = phone;
-        this.createdAt = createdAt;
+        this.userRoles = userRoles;
     }
+
+
 }
