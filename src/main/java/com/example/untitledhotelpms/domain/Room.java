@@ -1,5 +1,6 @@
 package com.example.untitledhotelpms.domain;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -35,6 +36,7 @@ public class Room extends BaseEntity {
     @Column(name = "under_maintenance")
     private boolean underMaintenance;
 
+    @Builder
     public Room(Long id,
                 Date createdDate,
                 String createdBy,

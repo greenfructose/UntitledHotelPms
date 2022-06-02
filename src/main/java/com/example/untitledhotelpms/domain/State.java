@@ -1,9 +1,6 @@
 package com.example.untitledhotelpms.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
@@ -27,6 +24,7 @@ public class State extends BaseEntity {
     @ManyToOne
     private Country country;
 
+    @Builder
     public State(Long id,
                  Date createdDate,
                  String createdBy,
