@@ -21,6 +21,8 @@ public class Address extends BaseEntity {
     private String street2;
     @Column(name = "postal_code")
     private String postalCode;
+    @Column(name = "state")
+    private State state;
 
     public Address(Long id, String street1, String street2, String postalCode) {
         super(id);
