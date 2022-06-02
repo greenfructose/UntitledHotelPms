@@ -26,6 +26,8 @@ public class AppUser extends BaseEntity {
     private String email;
     @Column(name = "phone")
     private String phone;
+    @ManyToOne
+    private Address address;
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @JoinTable(name = "app_user_roles",
     joinColumns = {
