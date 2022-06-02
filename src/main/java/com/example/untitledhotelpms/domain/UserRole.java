@@ -22,11 +22,6 @@ public class UserRole extends BaseEntity {
 
     @Column(name = "name")
     private String name;
-    @Column(name = "created_at")
-    private LocalDateTime createdAt;
-    @ManyToOne
-    @JoinColumn(name="app_user_id")
-    private AppUser createdBy;
 
     @Builder
     public UserRole(Long id,
@@ -40,7 +35,5 @@ public class UserRole extends BaseEntity {
                     AppUser createdBy1) {
         super(id, createdDate, createdBy, lastModifiedDate, lastModifiedBy, deleted);
         this.name = name;
-        this.createdAt = createdAt;
-        this.createdBy = createdBy1;
     }
 }
