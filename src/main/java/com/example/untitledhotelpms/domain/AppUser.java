@@ -28,6 +28,8 @@ public class AppUser extends BaseEntity {
     private String phone;
     @ManyToOne
     private Address address;
+    @OneToOne
+    private Rewards rewards;
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @JoinTable(name = "app_user_roles",
     joinColumns = {
