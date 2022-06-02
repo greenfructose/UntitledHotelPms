@@ -9,8 +9,11 @@ import org.hibernate.annotations.Where;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -23,9 +26,10 @@ public class MaintenanceTicket extends BaseEntity{
 
     @Column(name = "description")
     private String description;
+    @OneToMany
+    private Set<MaintenanceNote> maintenanceNotes = new HashSet<>();
 
     @Builder
-
     public MaintenanceTicket(Long id,
                              Date createdDate,
                              String createdBy,

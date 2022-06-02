@@ -9,6 +9,8 @@ import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -33,6 +35,10 @@ public class Reservation extends BaseEntity {
     private Long adults;
     @Column(name = "children")
     private Long children;
+    @OneToMany
+    private Set<ReservationRequest> reservationRequests = new HashSet<>();
+    @OneToMany
+    private Set<ReservationNote> reservationNotes = new HashSet<>();
 
     @Builder
     public Reservation(Long id,
