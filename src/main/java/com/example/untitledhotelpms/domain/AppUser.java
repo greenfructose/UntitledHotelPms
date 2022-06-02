@@ -26,7 +26,7 @@ public class AppUser extends BaseEntity {
     @Column(name = "phone")
     private String phone;
     @OneToMany
-    @JoinColumn(name = "user_roles_id")
+    @Column(name = "user_roles")
     private Set<UserRole> userRoles;
 
 

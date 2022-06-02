@@ -1,6 +1,8 @@
 package com.example.untitledhotelpms.domain;
 
 import lombok.*;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
 
 import javax.persistence.Column;
 import javax.persistence.Table;
@@ -10,6 +12,8 @@ import java.util.Date;
 @Setter
 @NoArgsConstructor
 @Table(name = "countries")
+@Where(clause = "deleted='false'")
+@SQLDelete(sql = "UPDATE countries SET deleted = true WHERE id = ?")
 public class Country extends BaseEntity{
 
     @Column(name = "name")

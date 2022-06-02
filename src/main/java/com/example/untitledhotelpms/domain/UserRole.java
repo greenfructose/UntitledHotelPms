@@ -4,6 +4,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -14,6 +16,8 @@ import java.util.Date;
 @NoArgsConstructor
 @Entity
 @Table(name = "user_roles")
+@Where(clause = "deleted='false'")
+@SQLDelete(sql = "UPDATE user_roles SET deleted = true WHERE id = ?")
 public class UserRole extends BaseEntity {
 
     @Column(name = "name")
