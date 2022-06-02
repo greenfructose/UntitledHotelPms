@@ -5,16 +5,18 @@ import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import java.util.Date;
 
 @Getter
 @Setter
+@Entity
 @NoArgsConstructor
-@Table(name = "addresses")
+@Table(name = "address")
 @Where(clause = "deleted='false'")
-@SQLDelete(sql = "UPDATE addresses SET deleted = true WHERE id = ?")
+@SQLDelete(sql = "UPDATE address SET deleted = true WHERE id = ?")
 public class Address extends BaseEntity {
 
     @Column(name = "street_1")
@@ -24,7 +26,6 @@ public class Address extends BaseEntity {
     @Column(name = "postal_code")
     private String postalCode;
     @ManyToOne
-    @Column(name = "state")
     private State state;
 
     @Builder

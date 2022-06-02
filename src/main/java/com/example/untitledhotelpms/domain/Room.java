@@ -7,24 +7,28 @@ import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 @Getter
 @Setter
+@Entity
 @NoArgsConstructor
-@Table(name = "rooms")
+@Table(name = "room")
 @Where(clause = "deleted='false'")
-@SQLDelete(sql = "UPDATE rooms SET deleted = true WHERE id = ?")
+@SQLDelete(sql = "UPDATE room SET deleted = true WHERE id = ?")
 public class Room extends BaseEntity {
 
     @Column(name = "room_number")
     private String roomNumber;
     @Column(name = "description")
     private String description;
-    @Column(name = "conjoined_with")
-    private Set<Room> conjoinedWith;
+    @ManyToMany
+    private Set<Room> conjoinedWith = new HashSet<>();
     @Column(name = "vacant")
     private boolean vacant;
     @Column(name = "clean")

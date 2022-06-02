@@ -6,15 +6,16 @@ import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 @Getter
 @Setter
 @Entity
 @NoArgsConstructor
-@Table(name = "app_users")
+@Table(name = "app_user")
 @Where(clause = "deleted='false'")
-@SQLDelete(sql = "UPDATE app_users SET deleted = true WHERE id = ?")
+@SQLDelete(sql = "UPDATE app_user SET deleted = true WHERE id = ?")
 public class AppUser extends BaseEntity {
 
     @Column(name = "first_name")
@@ -25,9 +26,16 @@ public class AppUser extends BaseEntity {
     private String email;
     @Column(name = "phone")
     private String phone;
-    @OneToMany
-    @Column(name = "user_roles")
-    private Set<UserRole> userRoles;
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @JoinTable(name = "app_user_roles",
+    joinColumns = {
+            @JoinColumn(name = "app_user_id", referencedColumnName = "id")
+    },
+            inverseJoinColumns = {
+            @JoinColumn(name = "role_id", referencedColumnName = "id")
+            }
+    )
+    private Set<Role> roles = new HashSet<>();
 
 
     @Builder
@@ -41,13 +49,13 @@ public class AppUser extends BaseEntity {
                    String lastName,
                    String email,
                    String phone,
-                   Set<UserRole> userRoles) {
+                   Set<Role> roles) {
         super(id, createdDate, createdBy, lastModifiedDate, lastModifiedBy, deleted);
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.phone = phone;
-        this.userRoles = userRoles;
+        this.roles = roles;
     }
 
 

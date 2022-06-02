@@ -8,22 +8,23 @@ import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import java.util.Date;
 
 @Getter
 @Setter
+@Entity
 @NoArgsConstructor
-@Table(name = "states")
+@Table(name = "state")
 @Where(clause = "deleted='false'")
-@SQLDelete(sql = "UPDATE states SET deleted = true WHERE id = ?")
+@SQLDelete(sql = "UPDATE state SET deleted = true WHERE id = ?")
 public class State extends BaseEntity {
 
     @Column(name = "name")
     private String name;
     @ManyToOne
-    @Column(name = "country")
     private Country country;
 
     public State(Long id,

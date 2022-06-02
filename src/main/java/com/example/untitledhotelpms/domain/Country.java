@@ -5,15 +5,17 @@ import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.Table;
 import java.util.Date;
 
 @Getter
 @Setter
+@Entity
 @NoArgsConstructor
-@Table(name = "countries")
+@Table(name = "country")
 @Where(clause = "deleted='false'")
-@SQLDelete(sql = "UPDATE countries SET deleted = true WHERE id = ?")
+@SQLDelete(sql = "UPDATE country SET deleted = true WHERE id = ?")
 public class Country extends BaseEntity{
 
     @Column(name = "name")
