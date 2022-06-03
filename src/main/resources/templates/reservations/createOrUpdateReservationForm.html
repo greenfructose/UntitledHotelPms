@@ -11,20 +11,7 @@
         <input
                 th:replace="~{fragments/inputField :: input ('Check Out', 'checkOut', 'date')}" />
         <select th:replace="~{fragments/selectField :: select ('Room Type', 'roomType', ${roomTypes})}"></select>
-<!--        <input-->
-<!--                th:replace="~{fragments/inputField :: input ('Address 2', 'address2', 'text')}" />-->
-<!--        <input-->
-<!--                th:replace="~{fragments/inputField :: input ('City', 'city', 'text')}" />-->
-<!--        <input-->
-<!--                th:replace="~{fragments/inputField :: input ('State', 'state', 'text')}" />-->
-<!--        <input-->
-<!--                th:replace="~{fragments/inputField :: input ('Postal Code', 'postalCode', 'text')}" />-->
-<!--        <input-->
-<!--                th:replace="~{fragments/inputField :: input ('Country', 'country', 'text')}" />-->
-<!--        <input-->
-<!--                th:replace="~{fragments/inputField :: input ('Phone Number', 'phone', 'text')}" />-->
-<!--        <input-->
-<!--                th:replace="~{fragments/inputField :: input ('Email', 'email', 'text')}" />-->
+        <div id="replace_div"></div>
     </div>
     <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
@@ -33,5 +20,24 @@
         </div>
     </div>
 </form>
+<script>
+    $(document).ready(function () {
+
+        //call function when page is loaded
+        getContent();
+
+        //set on change listener
+        $('#roomType').change(getContent);
+
+        function getContent() {
+
+            //create url to request fragment
+            let url = '/reservations/roomfilter/' + $('#roomType').val();
+
+            //load fragment and replace content
+            $('#replace_div').load(url);
+        }
+    })
+</script>
 </body>
 </html>

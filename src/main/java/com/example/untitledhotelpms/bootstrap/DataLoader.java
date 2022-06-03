@@ -1,9 +1,11 @@
 package com.example.untitledhotelpms.bootstrap;
 
 import com.example.untitledhotelpms.domain.AppUser;
+import com.example.untitledhotelpms.domain.Room;
 import com.example.untitledhotelpms.domain.RoomType;
 import com.example.untitledhotelpms.domain.UserRole;
 import com.example.untitledhotelpms.service.AppUserService;
+import com.example.untitledhotelpms.service.RoomService;
 import com.example.untitledhotelpms.service.RoomTypeService;
 import com.example.untitledhotelpms.service.UserRoleService;
 import org.springframework.boot.CommandLineRunner;
@@ -19,11 +21,13 @@ public class DataLoader implements CommandLineRunner {
     private final AppUserService appUserService;
     private final UserRoleService userRoleService;
     private final RoomTypeService roomTypeService;
+    private final RoomService roomService;
 
-    public DataLoader(AppUserService appUserService, UserRoleService userRoleService, RoomTypeService roomTypeService) {
+    public DataLoader(AppUserService appUserService, UserRoleService userRoleService, RoomTypeService roomTypeService, RoomService roomService) {
         this.appUserService = appUserService;
         this.userRoleService = userRoleService;
         this.roomTypeService = roomTypeService;
+        this.roomService = roomService;
     }
 
     @Override
@@ -147,5 +151,115 @@ public class DataLoader implements CommandLineRunner {
         System.out.println("Created RoomType: " + singleKing.getName());
         roomTypeService.save(kingSuite);
         System.out.println("Created RoomType: " + kingSuite.getName());
+
+        Room room101 = Room.builder()
+                .id(1L)
+                .createdBy("loadData")
+                .createdDate(new Date())
+                .lastModifiedBy("loadData")
+                .lastModifiedDate(new Date())
+                .deleted(false)
+                .name("101")
+                .description("King Suite")
+                .vacant(true)
+                .clean(true)
+                .underMaintenance(false)
+                .build();
+        room101.setRoomType(kingSuite);
+
+        Room room102 = Room.builder()
+                .id(2L)
+                .createdBy("loadData")
+                .createdDate(new Date())
+                .lastModifiedBy("loadData")
+                .lastModifiedDate(new Date())
+                .deleted(false)
+                .name("102")
+                .description("Single K")
+                .vacant(true)
+                .clean(true)
+                .underMaintenance(false)
+                .build();
+        room102.setRoomType(singleKing);
+
+        Room room103 = Room.builder()
+                .id(3L)
+                .createdBy("loadData")
+                .createdDate(new Date())
+                .lastModifiedBy("loadData")
+                .lastModifiedDate(new Date())
+                .deleted(false)
+                .name("103")
+                .description("King Suite")
+                .vacant(true)
+                .clean(true)
+                .underMaintenance(false)
+                .build();
+        room103.setRoomType(kingSuite);
+
+        Room room104 = Room.builder()
+                .id(4L)
+                .createdBy("loadData")
+                .createdDate(new Date())
+                .lastModifiedBy("loadData")
+                .lastModifiedDate(new Date())
+                .deleted(false)
+                .name("104")
+                .description("Single  K")
+                .vacant(true)
+                .clean(true)
+                .underMaintenance(false)
+                .build();
+        room104.setRoomType(singleKing);
+
+        Room room105 = Room.builder()
+                .id(5L)
+                .createdBy("loadData")
+                .createdDate(new Date())
+                .lastModifiedBy("loadData")
+                .lastModifiedDate(new Date())
+                .deleted(false)
+                .name("105")
+                .description("Conjoined QQ")
+                .vacant(true)
+                .clean(true)
+                .underMaintenance(false)
+                .build();
+        room105.setRoomType(doubleQueen);
+
+        Room room106 = Room.builder()
+                .id(6L)
+                .createdBy("loadData")
+                .createdDate(new Date())
+                .lastModifiedBy("loadData")
+                .lastModifiedDate(new Date())
+                .deleted(false)
+                .name("106")
+                .description("Conjoined QQ")
+                .vacant(true)
+                .clean(true)
+                .underMaintenance(false)
+                .build();
+        room106.setRoomType(doubleQueen);
+
+//        Set<Room> conjoinedRooms = new HashSet<>();
+//        conjoinedRooms.add(room106);
+//        room105.setConjoinedWith(conjoinedRooms);
+//        Set<Room> alsoConjoinedRooms = new HashSet<>();
+//        alsoConjoinedRooms.add(room105);
+//        room106.setConjoinedWith(alsoConjoinedRooms);
+
+        roomService.save(room101);
+        System.out.println("Created Room: " + room101.getName());
+        roomService.save(room102);
+        System.out.println("Created Room: " + room102.getName());
+        roomService.save(room103);
+        System.out.println("Created Room: " + room103.getName());
+        roomService.save(room104);
+        System.out.println("Created Room: " + room104.getName());
+        roomService.save(room105);
+        System.out.println("Created Room: " + room105.getName());
+        roomService.save(room106);
+        System.out.println("Created Room: " + room106.getName());
     }
 }

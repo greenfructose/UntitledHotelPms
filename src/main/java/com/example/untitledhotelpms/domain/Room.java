@@ -21,8 +21,8 @@ import java.util.Set;
 @SQLDelete(sql = "UPDATE room SET deleted = true WHERE id = ?")
 public class Room extends BaseEntity {
 
-    @Column(name = "room_number")
-    private String roomNumber;
+    @Column(name = "name")
+    private String name;
     @ManyToOne
     private RoomType roomType;
     @Column(name = "description")
@@ -43,14 +43,14 @@ public class Room extends BaseEntity {
                 Date lastModifiedDate,
                 String lastModifiedBy,
                 boolean deleted,
-                String roomNumber,
+                String name,
                 String description,
                 Set<Room> conjoinedWith,
                 boolean vacant,
                 boolean clean,
                 boolean underMaintenance) {
         super(id, createdDate, createdBy, lastModifiedDate, lastModifiedBy, deleted);
-        this.roomNumber = roomNumber;
+        this.name = name;
         this.description = description;
         this.conjoinedWith = conjoinedWith;
         this.vacant = vacant;
