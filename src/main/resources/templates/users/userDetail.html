@@ -1,10 +1,77 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>User Detail</title>
-</head>
+
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{fragments/layout :: layout (~{::body},'appUsers')}">
+
 <body>
-<h1>User Detail</h1>
+
+
+<h2>User Information</h2>
+
+
+<table class="table table-striped" th:object="${appUser}">
+    <tr>
+        <th>Name</th>
+        <td><b th:text="*{firstName + ' ' + lastName}"></b></td>
+    </tr>
+    <tr>
+        <th>Address 1</th>
+        <td th:text="*{address1}" /></td>
+    </tr>
+    <tr>
+        <th>Address 2</th>
+        <td th:text="*{address2}" /></td>
+    </tr>
+    <tr>
+        <th>City</th>
+        <td th:text="*{city}" /></td>
+    </tr>
+    <tr>
+        <th>State</th>
+        <td th:text="*{state}" /></td>
+    </tr>
+    <tr>
+        <th>Country</th>
+        <td th:text="*{country}" /></td>
+    </tr>
+    <tr>
+        <th>Postal Code</th>
+        <td th:text="*{postalCode}" /></td>
+    </tr>
+    <tr>
+        <th>Phone</th>
+        <td th:text="*{phone}" /></td>
+    </tr>
+</table>
+
+<a th:href="@{{id}/edit(id=${appUser.id})}" class="btn btn-primary">Edit
+    User</a>
+<a th:href="@{{id}/rewards/new(id=${appUser.id})}" class="btn btn-primary">Add
+    Rewards</a>
+
+<br />
+<br />
+<br />
+<!--<h2>Reservations</h2>-->
+
+<!--<table class="table table-striped">-->
+
+<!--    <tr th:each="reservation : ${user.reservations}">-->
+<!--        <td valign="top">-->
+<!--            <dl class="dl-horizontal">-->
+<!--                <dt>Start Date</dt>-->
+<!--                <dd th:text="${#temporals.format(reservation.startDate, 'MM-dd-yyyy')}" /></dd>-->
+<!--                <dt>End Date Date</dt>-->
+<!--                <dd-->
+<!--                        th:text="${#temporals.format(reservation.endDate, 'MM-dd-yyyy')}" /></dd>-->
+<!--                <dt>Room Type</dt>-->
+<!--                <dd th:text="${reservation.roomType}" /></dd>-->
+<!--            </dl>-->
+<!--        </td>-->
+<!--    </tr>-->
+
+<!--</table>-->
+
 </body>
+
 </html>

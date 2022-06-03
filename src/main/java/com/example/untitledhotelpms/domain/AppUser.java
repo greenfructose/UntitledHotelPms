@@ -26,8 +26,18 @@ public class AppUser extends BaseEntity {
     private String email;
     @Column(name = "phone")
     private String phone;
-    @ManyToOne
-    private Address address;
+    @Column(name = "address_1")
+    private String address1;
+    @Column(name = "address_2")
+    private String address2;
+    @Column(name = "city")
+    private String city;
+    @Column(name = "state")
+    private String state;
+    @Column(name = "country")
+    private String country;
+    @Column(name = "postal_code")
+    private String postalCode;
     @OneToOne
     private Rewards rewards;
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
@@ -53,14 +63,26 @@ public class AppUser extends BaseEntity {
                    String lastName,
                    String email,
                    String phone,
+                   String address1,
+                   String address2,
+                   String city,
+                   String state,
+                   String country,
+                   String postalCode,
+                   Rewards rewards,
                    Set<Role> roles) {
         super(id, createdDate, createdBy, lastModifiedDate, lastModifiedBy, deleted);
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.phone = phone;
+        this.address1 = address1;
+        this.address2 = address2;
+        this.city = city;
+        this.state = state;
+        this.country = country;
+        this.postalCode = postalCode;
+        this.rewards = rewards;
         this.roles = roles;
     }
-
-
 }

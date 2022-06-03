@@ -25,8 +25,18 @@ public class Property extends BaseEntity {
     private String name;
     @Column(name = "description")
     private String description;
-    @ManyToOne
-    private Address address;
+    @Column(name = "address_1")
+    private String address1;
+    @Column(name = "address_2")
+    private String address2;
+    @Column(name = "city")
+    private String city;
+    @Column(name = "state")
+    private String state;
+    @Column(name = "country")
+    private String country;
+    @Column(name = "postal_code")
+    private String postalCode;
     @Column(name = "phone")
     private String phone;
     @Column(name = "fax")
@@ -47,18 +57,30 @@ public class Property extends BaseEntity {
                     boolean deleted,
                     String name,
                     String description,
-                    Address address,
+                    String address1,
+                    String address2,
+                    String city,
+                    String state,
+                    String country,
+                    String postalCode,
                     String phone,
                     String fax,
                     String website,
-                    String email) {
+                    String email,
+                    Set<Amenity> amenities) {
         super(id, createdDate, createdBy, lastModifiedDate, lastModifiedBy, deleted);
         this.name = name;
         this.description = description;
-        this.address = address;
+        this.address1 = address1;
+        this.address2 = address2;
+        this.city = city;
+        this.state = state;
+        this.country = country;
+        this.postalCode = postalCode;
         this.phone = phone;
         this.fax = fax;
         this.website = website;
         this.email = email;
+        this.amenities = amenities;
     }
 }
