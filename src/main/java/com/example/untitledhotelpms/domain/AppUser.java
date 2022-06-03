@@ -49,7 +49,7 @@ public class AppUser extends BaseEntity {
             @JoinColumn(name = "role_id", referencedColumnName = "id")
             }
     )
-    private Set<Role> roles = new HashSet<>();
+    private Set<UserRole> userRoles = new HashSet<>();
 
 
     @Builder
@@ -70,7 +70,7 @@ public class AppUser extends BaseEntity {
                    String country,
                    String postalCode,
                    Rewards rewards,
-                   Set<Role> roles) {
+                   Set<UserRole> userRoles) {
         super(id, createdDate, createdBy, lastModifiedDate, lastModifiedBy, deleted);
         this.firstName = firstName;
         this.lastName = lastName;
@@ -83,6 +83,6 @@ public class AppUser extends BaseEntity {
         this.country = country;
         this.postalCode = postalCode;
         this.rewards = rewards;
-        this.roles = roles;
+        this.userRoles = userRoles;
     }
 }
